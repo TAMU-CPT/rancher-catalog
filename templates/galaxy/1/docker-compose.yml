@@ -1,0 +1,18 @@
+galaxy:
+  image: bgruening/galaxy-stable:latest
+  ports:
+    - ${public_port}:80/tcp
+  environment:
+    GALAXY_CONFIG_ADMIN_USERS: ${ADMIN_USERS}
+    GALAXY_CONFIG_MASTER_API_KEY: ${MASTER_API_KEY}
+    GALAXY_CONFIG_BRAND: ${BRAND}
+  labels:
+    io.rancher.sidekicks: galaxy-data
+
+galaxy-data:
+  labels:
+    io.rancher.container.start_once: 'true'
+  image: alpine
+  volumes:
+  - /export
+  net: none
