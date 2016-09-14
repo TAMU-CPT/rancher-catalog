@@ -19,6 +19,12 @@
       type: "string"
       default: "Docker-Rancher"
       required: true
+    - variable: "public_port"
+      label: "Public Port"
+      description: ""
+      type: "string"
+      default: "8080"
+      required: true
 
 galaxy:
   scale: 1
