@@ -21,6 +21,7 @@
       required: true
 
 galaxy:
+  scale: 1
   health_check:
     port: 80
     interval: 6000
@@ -28,3 +29,7 @@ galaxy:
     request_line: GET / HTTP/1.0
     healthy_threshold: 2
     response_timeout: 2000
+
+
+alfresco-data:
+  scale: 1

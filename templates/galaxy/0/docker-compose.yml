@@ -8,4 +8,12 @@ galaxy:
     GALAXY_CONFIG_MASTER_API_KEY: ${MASTER_API_KEY}
     GALAXY_CONFIG_BRAND: ${BRAND}
   labels:
+    io.rancher.sidekicks: galaxy-data
+
+galaxy-data:
+  labels:
     io.rancher.container.start_once: 'true'
+  image: alpine
+  volumes:
+  - /export
+  net: none
