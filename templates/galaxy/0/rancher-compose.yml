@@ -1,0 +1,30 @@
+.catalog:
+  name: "Galaxy"
+  version: "v0.0.1"
+  description: "Galaxy Bioinformatics Platform"
+  questions:
+    - variable: "ADMIN_USERS"
+      label: "Admin Users"
+      description: "Comma separated list of admin users"
+      type: "string"
+      required: true
+    - variable: "MASTER_API_KEY"
+      label: "Master API Key"
+      description: ""
+      type: "string"
+      required: true
+    - variable: "BRAND"
+      label: "Branding on Deployment"
+      description: ""
+      type: "string"
+      default: "Docker-Rancher"
+      required: true
+
+galaxy:
+  health_check:
+    port: 80
+    interval: 6000
+    unhealthy_threshold: 3
+    request_line: GET / HTTP/1.0
+    healthy_threshold: 2
+    response_timeout: 2000

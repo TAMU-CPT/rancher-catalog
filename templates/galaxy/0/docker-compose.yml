@@ -1,0 +1,11 @@
+galaxy:
+  image: bgruening/galaxy-stable:latest
+  expose:
+   - 80
+   - 21
+  environment:
+    GALAXY_CONFIG_ADMIN_USERS: ${ADMIN_USERS}
+    GALAXY_CONFIG_MASTER_API_KEY: ${MASTER_API_KEY}
+    GALAXY_CONFIG_BRAND: ${BRAND}
+  labels:
+    io.rancher.container.start_once: 'true'

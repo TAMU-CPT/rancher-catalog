@@ -1,0 +1,5 @@
+name: Galaxy Server
+description: |
+    Bioinformatics workflow engine
+version: v0.0.1
+category: CPT
