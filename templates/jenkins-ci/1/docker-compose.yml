@@ -10,7 +10,7 @@ jenkins-primary:
     - jenkins-datavolume
   entrypoint: /usr/share/jenkins/rancher/jenkins.sh
   environment:
-    JENKINS_OPTS: "--prefix="${CONTEXT_PATH}
+    JENKINS_OPTS: "--prefix=${CONTEXT_PATH}"
     JAVA_OPTS: "-Xmx2048m"
   mem_limit: 2000000000
 jenkins-plugins:
