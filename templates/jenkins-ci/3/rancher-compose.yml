@@ -29,19 +29,80 @@
       List of plugins in the format <plugin_name>[:<version>]
       one entry per line.
     default: |
+      ace-editor
+      ansible
+      ant
+      antisamy-markup-formatter
+      authentication-tokens
+      branch-api
+      cas-plugin
+      cloudbees-folder
+      copyartifact
       credentials
+      credentials-binding
+      cvs
+      docker-commons
+      docker-custom-build-environment
+      durable-task
+      email-ext
+      emailext-template
+      embeddable-build-status
+      external-monitor-job
+      ghprb
       git
       git-client
+      git-server
       github
       github-api
-      github-oauth
-      greenballs
+      github-branch-source
+      github-organization-folder
+      handlebars
+      icon-shim
+      javadoc
+      jquery-detached
       junit
+      ldap
+      mailer
+      mapdb-api
+      matrix-auth
+      matrix-project
+      maven-plugin
+      modernstatus
+      momentjs
+      pam-auth
+      parameterized-trigger
+      pipeline-build-step
+      pipeline-input-step
+      pipeline-rest-api
+      pipeline-stage-step
+      pipeline-stage-view
       plain-credentials
+      promoted-builds
       scm-api
+      script-security
+      shiningpanda
+      simple-theme-plugin
+      ssh-agent
       ssh-credentials
       ssh-slaves
+      ssh-slaves
+      structs
+      subversion
       swarm
+      token-macro
+      translation
+      windows-slaves
+      workflow-aggregator
+      workflow-api
+      workflow-basic-steps
+      workflow-cps
+      workflow-cps-global-lib
+      workflow-durable-task-step
+      workflow-job
+      workflow-multibranch
+      workflow-scm-step
+      workflow-step-api
+      workflow-support
 jenkins-primary:
   metadata:
     plugins: |
