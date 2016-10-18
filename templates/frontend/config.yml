@@ -1,0 +1,5 @@
+name: CPT Frontend Proxy
+description: |
+  Exposes backend/cluster infrastructure
+version: 1-rancher1
+category: Proxy
