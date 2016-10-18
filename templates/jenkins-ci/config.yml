@@ -1,4 +1,4 @@
-name: Jenkins
+name: CPT Jenkins
 description: |
   Jenkins CI server (LTS)
 version: 1.651.3-rancher4
