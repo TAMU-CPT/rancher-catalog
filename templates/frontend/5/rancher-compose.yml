@@ -1,0 +1,5 @@
+.catalog:
+  name: CPT Frontend Proxy
+  version: 5-rancher1
+  description: |
+    Proxy service proxying all our backend infrastructure
