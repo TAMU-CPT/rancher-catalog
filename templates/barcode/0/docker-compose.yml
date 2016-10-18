@@ -1,0 +1,4 @@
+server:
+  image: "quay.io/tamu_cpt/barcode_server:latest"
+  ports:
+    - 80

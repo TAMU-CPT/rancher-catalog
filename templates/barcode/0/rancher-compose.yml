@@ -1,0 +1,5 @@
+.catalog:
+  name: CPT Barcode Server
+  description: |
+    Stateless code128 + QR code server
+  version: 1-rancher0
