@@ -1,13 +1,13 @@
 lb:
+  image: rancher/load-balancer-service
   ports:
-  - 127.0.0.1:9999:9999
+    - 127.0.0.1:9999:9999
   external_links:
-  - jenkins-ci/jenkins-primary:jenkins-primary
-  - barcode/lb:lb
+    - barcode/lb:lb
+    - jenkins-ci/jenkins-primary:jenkins-primary
   labels:
     io.rancher.scheduler.affinity:host_label: role=webserver
     io.rancher.loadbalancer.target.jenkins-ci/jenkins-primary: /jenkins2=8080
     io.rancher.loadbalancer.target.barcode/lb: /barcodes=9998
   tty: true
-  image: rancher/load-balancer-service
   stdin_open: true
