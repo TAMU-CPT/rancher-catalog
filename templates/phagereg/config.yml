@@ -1,0 +1,5 @@
+name: CPT Phage Registry
+description: |
+  Database of phage names from EBI, NCBI, and PhagesDb.org
+version: 1-rancher1
+category: Services

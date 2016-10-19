@@ -1,0 +1,2 @@
+registry:
+    image: quay.io/tamu_cpt/phage-registry:latest
