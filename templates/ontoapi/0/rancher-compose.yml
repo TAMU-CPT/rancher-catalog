@@ -1,0 +1,18 @@
+.catalog:
+  name: Phage Registry
+  version: 1-rancher1
+  description: |
+    CPT Phage Registry
+  questions:
+    - variable: "OBO_URLS"
+      label: "OBO Urls"
+      description: "Newline (space?) separated list of URLs"
+      type: "string"
+      default: "http://geneontology.org/ontology/go.obo"
+      required: true
+  - variable: "FRONTEND_URL_PREFIX"
+    type: "string"
+    label: "Frontend URL Path"
+    description: "Subdirectory to serve JS frontend from. Must have leading slash."
+    default: "/onto_api"
+    required: true
