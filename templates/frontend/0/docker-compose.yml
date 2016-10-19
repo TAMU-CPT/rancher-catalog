@@ -1,7 +1,17 @@
-nginxproxy:
-  image: quay.io/tamu_cpt/proxy:1
-  expose:
-    - "9999:80"
+lb:
+  image: rancher/load-balancer-service
+  ports:
+    - 127.0.0.1:9999:9999
+  external_links:
+    - barcode/lb:lb
+    - jenkins-ci/jenkins-primary:jenkins-primary
+    - gonuts/api-server:gonuts-api
+    - gonuts/static-server:gonuts-static
   labels:
-    io.rancher.container.start_once: true
-    io.rancher.scheduler.affinity: role=webserver
+    io.rancher.scheduler.affinity:host_label: role=webserver
+    io.rancher.loadbalancer.target.barcode/lb: /barcodes=5000
+    io.rancher.loadbalancer.target.jenkins-ci/jenkins-primary: /jenkins2=8080
+    io.rancher.loadbalancer.target.gonuts/api-server: /cacao-backend=8000
+    io.rancher.loadbalancer.target.gonuts/static-server: /cacao=80
+  tty: true
+  stdin_open: true

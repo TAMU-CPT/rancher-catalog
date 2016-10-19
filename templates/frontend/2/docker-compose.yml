@@ -1,7 +1,0 @@
-nginxproxy:
-  image: quay.io/tamu_cpt/proxy:2
-  expose:
-    - "9999:80"
-  labels:
-    io.rancher.container.pull_image: always
-    io.rancher.scheduler.affinity:host_label: role=webserver
