@@ -1,0 +1,40 @@
+.catalog:
+  name: CPT Barcode Server
+  description: |
+    Stateless code128 + QR code server
+  version: 3-rancher1
+  questions:
+  - variable: "LISTEN_PATH"
+    type: "string"
+    label: "Context Path"
+    description: "URL Path prefix"
+    default: "/barcodes"
+    required: true
+  - variable: "LISTEN_PORT"
+    label: "Port"
+    description: "Port on which to run the service"
+    default: 5000
+    required: true
+    type: "int"
+
+barcode-server:
+  scale: 1
+  health_check:
+    port: 80
+    interval: 10000
+    initializing_timeout: 2000
+    unhealthy_threshold: 3
+    strategy: recreate
+    response_timeout: 2000
+    request_line: GET "/healthcheck" "HTTP/1.0"
+    healthy_threshold: 2
+
+lb:
+  load_balancer_config:
+    haproxy_config: {}
+  health_check:
+    port: 42
+    interval: 2000
+    unhealthy_threshold: 3
+    healthy_threshold: 2
+    response_timeout: 2000
