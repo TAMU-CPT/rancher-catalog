@@ -1,0 +1,18 @@
+.catalog:
+  name: CPT Spanin Database
+  version: 1-rancher1
+  description: |
+    Spanin Database Site
+  questions:
+  - variable: "BACKEND_URL_PREFIX"
+    type: "string"
+    label: "Backend URL Path"
+    description: "Subdirectory to run API server under. Must not have trailing or leading slashc."
+    default: "spanindb-api"
+    required: true
+  - variable: "FRONTEND_URL_PREFIX"
+    type: "string"
+    label: "Frontend URL Path"
+    description: "Subdirectory to serve JS frontend from. Must have leading slash."
+    default: "/spanindb"
+    required: true
