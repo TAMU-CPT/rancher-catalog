@@ -1,6 +1,6 @@
 .catalog:
   name: CPT Onto API
-  version: 1-rancher1
+  version: 2-rancher1
   description: |
     CPT Ontology API
   questions:
