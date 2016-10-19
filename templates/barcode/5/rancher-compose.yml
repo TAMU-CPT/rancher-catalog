@@ -1,3 +1,21 @@
+.catalog:
+  name: CPT Barcode Server
+  description: |
+    Stateless code128 + QR code server
+  version: 3-rancher3
+  questions:
+  - variable: "LISTEN_PATH"
+    type: "string"
+    label: "Context Path"
+    description: "URL Path prefix"
+    default: "/barcodes"
+    required: true
+  - variable: "LISTEN_PORT"
+    label: "Port"
+    description: "Port on which to run the service"
+    default: 5000
+    required: true
+    type: "int"
 barcode:
   scale: 2
   health_check:

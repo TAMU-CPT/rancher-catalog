@@ -12,6 +12,6 @@ lb:
   ports:
   - 80
   labels:
-    io.rancher.loadbalancer.target.barcode: 9998=80
+    io.rancher.loadbalancer.target.barcode: 80=80
   links:
   - barcode:barcode
