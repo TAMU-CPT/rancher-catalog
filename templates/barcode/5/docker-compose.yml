@@ -1,21 +1,17 @@
 barcode:
   image: "quay.io/tamu_cpt/barcode_server:latest"
-  tty: true
-  stdin_open: true
   ports:
     - 80
   environment:
     BARCODE_LISTEN_PREFIX: "${LISTEN_PATH}"
   labels:
     io.rancher.container.pull_image: always
-
+    io.rancher.container.hostname_override: container_name
 lb:
   image: rancher/load-balancer-service
-  tty: true
-  stdin_open: true
   ports:
-  - ${LISTEN_PORT}:80/tcp
+  - 80
   labels:
-    io.rancher.loadbalancer.target.barcode: ${LISTEN_PORT}=80
+    io.rancher.loadbalancer.target.barcode: 9998=80
   links:
   - barcode:barcode
