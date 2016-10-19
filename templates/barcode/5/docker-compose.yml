@@ -10,7 +10,7 @@ barcode:
 lb:
   image: rancher/load-balancer-service
   ports:
-  - 80
+  - "${LISTEN_PORT}:80"
   labels:
     io.rancher.loadbalancer.target.barcode: 80=80
   links:
