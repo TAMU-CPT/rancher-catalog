@@ -1,0 +1,5 @@
+.catalog:
+  name: Phage Registry
+  version: 1-rancher1
+  description: |
+    CPT Phage Registry
