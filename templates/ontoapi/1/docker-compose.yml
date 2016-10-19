@@ -1,10 +1,10 @@
 static-server:
     image: quay.io/tamu_cpt/staticfileserver:latest
     volumes_from:
-      - api-builder
+        - api-builder
     environment:
-      ROOT_DIR: /output
-      PATH_PREFIX: ${FRONTEND_URL_PREFIX}
+        ROOT_DIR: /output
+        PATH_PREFIX: "${FRONTEND_URL_PREFIX}"
     labels:
         io.rancher.sidekicks: api-builder
 

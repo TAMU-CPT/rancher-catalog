@@ -10,9 +10,9 @@
       type: "string"
       default: "http://geneontology.org/ontology/go.obo"
       required: true
-  - variable: "FRONTEND_URL_PREFIX"
-    type: "string"
-    label: "Frontend URL Path"
-    description: "Subdirectory to serve JS frontend from. Must have leading slash."
-    default: "/onto_api"
-    required: true
+    - variable: "FRONTEND_URL_PREFIX"
+      type: "string"
+      label: "Frontend URL Path"
+      description: "Subdirectory to serve JS frontend from. Must have leading slash."
+      default: "/onto_api"
+      required: true
