@@ -1,0 +1,35 @@
+postgres:
+    image: postgres:9.5
+    volume_driver: convoy-nfs
+    volumes:
+        - ${volume_cacao_db}:/var/lib/postgresql/data
+    environment:
+        POSTGRES_PASSWORD: postgres
+
+api-server:
+    image: quay.io/tamu_cpt/cacao-backend:latest
+    links:
+        - postgres:db
+    environment:
+        DJANGO_URL_PREFIX: ${BACKEND_URL_PREFIX}/
+        CORS_ORIGINS: cpt.tamu.edu
+        ALLOWED_HOSTS: cpt.tamu.edu
+
+static-server:
+    image: quay.io/tamu_cpt/staticfileserver:latest
+    volumes_from:
+      - static-builder
+    environment:
+      ROOT_DIR: /output
+      PATH_PREFIX: ${FRONTEND_URL_PREFIX}
+    labels:
+        io.rancher.sidekicks: static-builder
+
+static-builder:
+    image: quay.io/tamu_cpt/cacao-frontend:latest
+    volumes:
+        - /output
+    environment:
+        CACAO_BACKEND_URL: ${BACKEND_HOST}${BACKEND_URL_PREFIX}
+    labels:
+        io.rancher.container.start_once: true
