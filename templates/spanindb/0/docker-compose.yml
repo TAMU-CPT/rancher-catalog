@@ -1,0 +1,2 @@
+spanindb:
+    image: quay.io/tamu_cpt/spanindb:latest

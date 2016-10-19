@@ -1,0 +1,5 @@
+.catalog:
+  name: CPT Spanin Database
+  version: 1-rancher1
+  description: |
+    Spanin Database Site
