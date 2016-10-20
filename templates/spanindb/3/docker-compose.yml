@@ -1,0 +1,29 @@
+spanindb-api:
+    image: quay.io/tamu_cpt/spanindb:latest
+    environment:
+        DJANGO_URL_PREFIX: ${BACKEND_URL_PREFIX}/
+        CORS_ORIGINS: cpt.tamu.edu,localhost
+        ALLOWED_HOSTS: cpt.tamu.edu,localhost
+    labels:
+        io.rancher.container.pull_image: always
+
+static-server:
+    image: quay.io/tamu_cpt/staticfileserver:latest
+    volumes_from:
+      - static-builder
+    environment:
+      ROOT_DIR: /output
+      PATH_PREFIX: ${FRONTEND_URL_PREFIX}
+    labels:
+        io.rancher.sidekicks: static-builder
+        io.rancher.container.pull_image: always
+
+static-builder:
+    image: quay.io/tamu_cpt/spanindb-frontend:latest
+    volumes:
+        - /output
+    environment:
+        BACKEND_URL: ${BACKEND_HOST}${BACKEND_URL_PREFIX}
+    labels:
+        io.rancher.container.start_once: true
+        io.rancher.container.pull_image: always

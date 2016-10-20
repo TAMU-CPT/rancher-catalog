@@ -1,0 +1,24 @@
+.catalog:
+  name: CPT Spanin Database
+  version: 1-rancher2
+  description: |
+    Spanin Database Site
+  questions:
+  - variable: "BACKEND_HOST"
+    type: "string"
+    label: "Backend Host + Protocol Path"
+    description: ""
+    default: "https://cpt.tamu.edu/"
+    required: true
+  - variable: "BACKEND_URL_PREFIX"
+    type: "string"
+    label: "Backend URL Path"
+    description: "Subdirectory to run API server under. Must not have trailing or leading slashc."
+    default: "spanindb-api"
+    required: true
+  - variable: "FRONTEND_URL_PREFIX"
+    type: "string"
+    label: "Frontend URL Path"
+    description: "Subdirectory to serve JS frontend from. Must have leading slash."
+    default: "/spanindb"
+    required: true
