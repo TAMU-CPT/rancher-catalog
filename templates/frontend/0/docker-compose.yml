@@ -9,7 +9,8 @@ lb:
     - gonuts/static-server:gonuts-static
     - phagereg/registry:phagereg
     - ontoapi/static-server:ontoapi
-    - spanindb/spanindb:spanindb
+    - spanindb/spanindb-api:spanindb-api
+    - spanindb/static-server:spanindb-static
   labels:
     io.rancher.scheduler.affinity:host_label: role=webserver
     io.rancher.loadbalancer.target.barcode/lb: /barcodes=5000
@@ -18,6 +19,7 @@ lb:
     io.rancher.loadbalancer.target.gonuts/static-server: /cacao=80
     io.rancher.loadbalancer.target.phagereg/registry: /phage-registry=8094
     io.rancher.loadbalancer.target.ontoapi/static-server: /onto_api=80
-    io.rancher.loadbalancer.target.spanindb/spanindb: /spanindb=8000
+    io.rancher.loadbalancer.target.spanindb/spanindb-api: /spanindb-api=8000
+    io.rancher.loadbalancer.target.spanindb/static-server: /spanindb=80
   tty: true
   stdin_open: true
