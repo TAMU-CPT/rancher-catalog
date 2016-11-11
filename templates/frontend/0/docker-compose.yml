@@ -5,8 +5,8 @@ lb:
   external_links:
     - barcode/lb:lb
     - jenkins-ci/jenkins-primary:jenkins-primary
-    - gonuts/api-server:gonuts-api
-    - gonuts/static-server:gonuts-static
+    - cacao/api-server:cacao-api
+    - cacao/static-server:cacao-static
     - phagereg/registry:phagereg
     - ontoapi/static-server:ontoapi
     - spanindb/spanindb-api:spanindb-api
@@ -17,8 +17,8 @@ lb:
     io.rancher.scheduler.affinity:host_label: role=webserver
     io.rancher.loadbalancer.target.barcode/lb: /barcodes=5000
     io.rancher.loadbalancer.target.jenkins-ci/jenkins-primary: /jenkins2=8080
-    io.rancher.loadbalancer.target.gonuts/api-server: /cacao-backend=8000
-    io.rancher.loadbalancer.target.gonuts/static-server: /cacao=80
+    io.rancher.loadbalancer.target.cacao/api-server: /cacao-backend=8000
+    io.rancher.loadbalancer.target.cacao/static-server: /cacao=80
     io.rancher.loadbalancer.target.phagereg/registry: /phage-registry=8094
     io.rancher.loadbalancer.target.ontoapi/static-server: /onto_api=80
     io.rancher.loadbalancer.target.spanindb/spanindb-api: /spanindb-api=8000
