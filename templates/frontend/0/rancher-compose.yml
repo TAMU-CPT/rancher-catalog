@@ -13,3 +13,11 @@ lb:
     unhealthy_threshold: 3
     healthy_threshold: 2
     response_timeout: 2000
+  load_balancer_config:
+    haproxy_config:
+      defaults: |-
+        stats enable
+        stats hide-version
+        stats scope .
+        stats realm Haproxy\ Statistics
+        stats uri /haproxy?stats
