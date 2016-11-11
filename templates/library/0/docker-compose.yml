@@ -1,9 +1,22 @@
+library-proxy:
+  image: quay.io/tamu_cpt/urlremap
+  ports:
+    - 80
+  labels:
+    io.rancher.container.pull_image: always
+  links:
+    - 'library:backend'
+  environment:
+    INCOMING_PATH_PREFIX: '/library'
+    OUTGOING_PATH_PREFIX: '/'
+    BACKEND_PORT: 80
+
 library:
   image: "grimy55/i-librarian"
   ports:
     - 80
   labels:
-    io.rancher.sidekicks: library-datavolume
+    io.rancher.sidekicks: library-datavolume, library-proxy
     io.rancher.container.pull_image: always
     io.rancher.container.hostname_override: container_name
   volumes:
