@@ -3,7 +3,8 @@
   description: |
     Statefull Web based PDF Library
   version: 1-rancher0
-barcode:
+
+library:
   scale: 1
   health_check:
     port: 80
