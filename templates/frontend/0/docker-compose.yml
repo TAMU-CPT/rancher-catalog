@@ -11,7 +11,9 @@ lb:
     - ontoapi/static-server:ontoapi
     - spanindb/spanindb-api:spanindb-api
     - spanindb/static-server:spanindb-static
+    - library/library:library
   labels:
+    # http://docs.rancher.com/rancher/v1.2/en/cattle/adding-load-balancers/#syntax-of-the-combination-of-all-optional-fields
     io.rancher.scheduler.affinity:host_label: role=webserver
     io.rancher.loadbalancer.target.barcode/lb: /barcodes=5000
     io.rancher.loadbalancer.target.jenkins-ci/jenkins-primary: /jenkins2=8080
@@ -21,5 +23,6 @@ lb:
     io.rancher.loadbalancer.target.ontoapi/static-server: /onto_api=80
     io.rancher.loadbalancer.target.spanindb/spanindb-api: /spanindb-api=8000
     io.rancher.loadbalancer.target.spanindb/static-server: /spanindb=80
+    io.rancher.loadbalancer.target.library/library: /library=80
   tty: true
   stdin_open: true
