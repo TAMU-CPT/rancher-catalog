@@ -1,0 +1,29 @@
+.catalog:
+  name: CPT Library
+  description: |
+    Statefull Web based PDF Library
+  version: 1-rancher1
+  questions:
+  - variable: "volume_work"
+    description: "Work volume to save library data / DB"
+    label: "Work volume:"
+    required: true
+    default: "library"
+    type: "string"
+  - variable: "LISTEN_PATH"
+    type: "string"
+    label: "Context Path"
+    description: "URL Path prefix"
+    default: "/library"
+    required: true
+library:
+  scale: 1
+  health_check:
+    port: 80
+    interval: 10000
+    initializing_timeout: 2000
+    unhealthy_threshold: 3
+    strategy: recreate
+    request_line: GET "/" "HTTP/1.0"
+    healthy_threshold: 2
+    response_timeout: 2000
