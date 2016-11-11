@@ -3,7 +3,7 @@ library:
   ports:
     - 80
   labels:
-    io.rancher.sidekicks: library2-datavolume
+    io.rancher.sidekicks: library-datavolume
     io.rancher.container.pull_image: always
     io.rancher.container.hostname_override: container_name
   volumes:
