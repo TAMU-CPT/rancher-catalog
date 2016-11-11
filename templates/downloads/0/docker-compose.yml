@@ -5,6 +5,7 @@ fileserver:
         PATH_PREFIX: ${URL_PREFIX}
     labels:
         io.rancher.container.pull_image: always
+        io.rancher.scheduler.affinity:host_label_soft: role=webserver
     volumes:
         - ${VOLUME_NAME}:/data
     volume_driver: convoy-nfs
