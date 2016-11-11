@@ -1,16 +1,16 @@
 wordpress:
-	image: wordpress
-	links:
-		- mysql
-	ports:
-		- 80
-	environment:
-		WORDPRESS_DB_PASSWORD: 0dGdmwLyQ3AjW79MYDtRHzE
+  image: wordpress
+  links:
+    - mysql
+  ports:
+    - 80
+  environment:
+    WORDPRESS_DB_PASSWORD: 0dGdmwLyQ3AjW79MYDtRHzE
 
 mysql:
-	image: tutum/mysql:latest
-	volumes:
-		- ./data:/var/lib/mysql
-	environment:
-		MYSQL_PASS: 0dGdmwLyQ3AjW79MYDtRHzE
-	mem_limit: 4000000000
+  image: tutum/mysql:latest
+  volumes:
+    - ./data:/var/lib/mysql
+  environment:
+    MYSQL_PASS: 0dGdmwLyQ3AjW79MYDtRHzE
+  mem_limit: 4000000000
