@@ -1,0 +1,21 @@
+.catalog:
+  name: CPT Condor Cluster
+  description: |
+    HTCondor container for executing CPT's Galaxy Jobs.
+  version: 1-rancher0
+condor_master:
+  scale: 1
+condor_submit:
+  scale: 1
+condor_runner_128Mx8:
+  scale: 20
+condor_runner_256Mx4:
+  scale: 5
+condor_runner_512Mx2:
+  scale: 5
+condor_runner_1Gx4:
+  scale: 0
+condor_runner_8Gx2:
+  scale: 0
+condor_runner_32Gx1:
+  scale: 0

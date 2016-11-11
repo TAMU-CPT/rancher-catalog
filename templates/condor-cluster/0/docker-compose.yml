@@ -1,0 +1,89 @@
+condor_master:
+  image: "quay.io/tamu_cpt/condor_master"
+  ports:
+    - "9618:9618"
+  labels:
+    io.rancher.container.pull_image: always
+    io.rancher.container.hostname_override: container_name
+    io.rancher.scheduler.affinity:host_label_soft: role=webserver
+
+condor_submit:
+  image: "quay.io/tamu_cpt/condor_submit"
+  links:
+    - condor_master
+  labels:
+    io.rancher.container.pull_image: always
+    io.rancher.container.hostname_override: container_name
+    io.rancher.scheduler.affinity:host_label_soft: role=webserver
+
+condor_runner_128Mx8:
+  links:
+    - condor_master
+  image: "quay.io/tamu_cpt/condor_runner"
+  labels:
+    io.rancher.container.pull_image: always
+    io.rancher.container.hostname_override: container_name
+    io.rancher.scheduler.affinity:host_label_soft: role=compute
+  environment:
+    SLOT_SIZE: "128"
+    SLOT_COUNT: "8"
+
+condor_runner_256Mx4:
+  links:
+    - condor_master
+  image: "quay.io/tamu_cpt/condor_runner"
+  labels:
+    io.rancher.container.pull_image: always
+    io.rancher.container.hostname_override: container_name
+    io.rancher.scheduler.affinity:host_label_soft: role=compute
+  environment:
+    SLOT_SIZE: "256"
+    SLOT_COUNT: "4"
+
+condor_runner_512Mx2:
+  links:
+    - condor_master
+  image: "quay.io/tamu_cpt/condor_runner"
+  labels:
+    io.rancher.container.pull_image: always
+    io.rancher.container.hostname_override: container_name
+    io.rancher.scheduler.affinity:host_label_soft: role=compute
+  environment:
+    SLOT_SIZE: "512"
+    SLOT_COUNT: "2"
+
+condor_runner_1Gx4:
+  links:
+    - condor_master
+  image: "quay.io/tamu_cpt/condor_runner"
+  labels:
+    io.rancher.container.pull_image: always
+    io.rancher.container.hostname_override: container_name
+    io.rancher.scheduler.affinity:host_label_soft: role=compute
+  environment:
+    SLOT_SIZE: "1024"
+    SLOT_COUNT: "4"
+
+condor_runner_8Gx2:
+  links:
+    - condor_master
+  image: "quay.io/tamu_cpt/condor_runner"
+  labels:
+    io.rancher.container.pull_image: always
+    io.rancher.container.hostname_override: container_name
+    io.rancher.scheduler.affinity:host_label_soft: role=compute
+  environment:
+    SLOT_SIZE: "8192"
+    SLOT_COUNT: "2"
+
+condor_runner_32Gx1:
+  links:
+    - condor_master
+  image: "quay.io/tamu_cpt/condor_runner"
+  labels:
+    io.rancher.container.pull_image: always
+    io.rancher.container.hostname_override: container_name
+    io.rancher.scheduler.affinity:host_label_soft: role=compute
+  environment:
+    SLOT_SIZE: "32768"
+    SLOT_COUNT: "1"

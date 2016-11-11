@@ -1,0 +1,5 @@
+name: CPT Galaxy Condor Cluster
+description: |
+  Condor Master + Executors for running Galaxy Jobs
+version: 1-rancher0
+category: Services
