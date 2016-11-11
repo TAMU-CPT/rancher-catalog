@@ -1,0 +1,10 @@
+fileserver:
+    image: quay.io/tamu_cpt/staticfileserver:latest
+    environment:
+        ROOT_DIR: /data
+        PATH_PREFIX: ${URL_PREFIX}
+    labels:
+        io.rancher.container.pull_image: always
+    volumes:
+        - ${VOLUME_NAME}:/data
+    volume_driver: convoy-nfs
