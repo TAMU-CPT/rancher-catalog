@@ -1,6 +1,6 @@
 postgres:
     image: postgres:9.5
-    volume_driver: convoy
+    volume_driver: convoy-nfs
     volumes:
         - ${volume_cacao_db}:/var/lib/postgresql/data
     environment:

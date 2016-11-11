@@ -21,5 +21,5 @@ jenkins-datavolume:
     - ${volume_work}:/var/jenkins_home
   labels:
     io.rancher.container.start_once: true
-  volume_driver: convoy
+  volume_driver: convoy-nfs
   entrypoint: ["chown", "-R", "1000:1000", "/var/jenkins_home"]
