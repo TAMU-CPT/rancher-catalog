@@ -10,7 +10,8 @@ wordpress:
 mysql:
   image: tutum/mysql:latest
   volumes:
-    - ./data:/var/lib/mysql
+    - wordpress:/var/lib/mysql
+  volume_driver: convoy-nfs
   environment:
     MYSQL_PASS: 0dGdmwLyQ3AjW79MYDtRHzE
   mem_limit: 4000000000
