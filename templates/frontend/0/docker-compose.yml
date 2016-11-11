@@ -12,6 +12,7 @@ lb:
     - spanindb/spanindb-api:spanindb-api
     - spanindb/static-server:spanindb-static
     - library/library:library
+    - downloads/fileserver:downloads
   labels:
     # http://docs.rancher.com/rancher/v1.2/en/cattle/adding-load-balancers/#syntax-of-the-combination-of-all-optional-fields
     io.rancher.scheduler.affinity:host_label: role=webserver
@@ -24,5 +25,6 @@ lb:
     io.rancher.loadbalancer.target.spanindb/spanindb-api: /spanindb-api=8000
     io.rancher.loadbalancer.target.spanindb/static-server: /spanindb=80
     io.rancher.loadbalancer.target.library/library: /library=80
+    io.rancher.loadbalancer.target.downloads/fileserver: /dot=80
   tty: true
   stdin_open: true
