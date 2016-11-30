@@ -1,0 +1,6 @@
+name: CPT Apollo Instance
+description: |
+   Genome annotation editor with a Java Server backend and a Javascript client
+   that runs in a web browser as a JBrowse plugin.
+version: 1-rancher0
+category: Services

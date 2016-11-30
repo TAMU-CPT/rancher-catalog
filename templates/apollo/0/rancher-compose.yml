@@ -1,0 +1,25 @@
+.catalog:
+  name: CPT Apollo
+  version: 1-rancher0
+  description: |
+    Genome annotation editor with a Java Server backend and a Javascript client
+    that runs in a web browser as a JBrowse plugin.
+  questions:
+  - variable: "volume_apollo"
+    type: "string"
+    description: "Shared volume for JBrowse instances"
+    label: "JBrowse Convoy Volume"
+    default: "apollo"
+    required: true
+  - variable: "volume_db"
+    type: "string"
+    description: "Volume for Database"
+    label: "DB Convoy Volume"
+    default: "apollo_db"
+    required: true
+  - variable: "volume_chado"
+    type: "string"
+    description: "Volume for Chado Database"
+    label: "Chado Convoy Volume"
+    default: "apollo_chado"
+    required: true
