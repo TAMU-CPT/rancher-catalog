@@ -10,12 +10,12 @@ apollo:
       WEBAPOLLO_DB_PASSWORD: password
       WEBAPOLLO_DB_DRIVER: "org.postgresql.Driver"
       WEBAPOLLO_DB_DIALECT: "org.hibernate.dialect.PostgresPlusDialect"
-      WEBAPOLLO_DB_URI: "jdbc:postgresql://db/postgres"
+      WEBAPOLLO_DB_URI: "jdbc:postgresql://db.apollo.rancher.internal/postgres"
       WEBAPOLLO_CHADO_DB_USERNAME: postgres
       WEBAPOLLO_CHADO_DB_PASSWORD: password
       WEBAPOLLO_CHADO_DB_DRIVER: "org.postgresql.Driver"
       WEBAPOLLO_CHADO_DB_DIALECT: "org.hibernate.dialect.PostgresPlusDialect"
-      WEBAPOLLO_CHADO_DB_URI: "jdbc:postgresql://chado/postgres"
+      WEBAPOLLO_CHADO_DB_URI: "jdbc:postgresql://chado.apollo.rancher.internal/postgres"
     volume_driver: convoy-nfs
     volumes:
         - ${volume_apollo}:/data
