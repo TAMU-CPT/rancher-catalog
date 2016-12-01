@@ -27,6 +27,7 @@ db:
     volumes:
         - ${volume_db}:/var/lib/postgresql/9.4
     environment:
+        INSTALL_CHADO_SCHEMA: 0
         POSTGRES_PASSWORD: postgres
     labels:
         io.rancher.container.pull_image: always
