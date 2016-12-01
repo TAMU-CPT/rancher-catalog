@@ -20,6 +20,8 @@ apollo:
     volume_driver: convoy-nfs
     volumes:
         - ${volume_apollo}:/data
+    labels:
+        io.rancher.container.pull_image: always
 
 db:
     image: postgres:9.5
@@ -37,3 +39,5 @@ chado:
     environment:
         INSTALL_CHADO_SCHEMA: 1
         POSTGRES_PASSWORD: postgres
+    labels:
+        io.rancher.container.pull_image: always
