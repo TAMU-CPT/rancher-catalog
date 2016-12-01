@@ -24,10 +24,10 @@ apollo:
         io.rancher.container.pull_image: always
 
 db:
-    image: postgres:9.5
+    image: postgres:9.4
     volume_driver: convoy-nfs
     volumes:
-        - ${volume_db}:/var/lib/postgresql/data
+        - ${volume_db}:/var/lib/postgresql/9.4
     environment:
         POSTGRES_PASSWORD: postgres
 
