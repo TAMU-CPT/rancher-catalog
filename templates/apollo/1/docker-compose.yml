@@ -25,7 +25,7 @@ db:
     image: postgres:9.4
     volume_driver: convoy-nfs
     volumes:
-        - ${volume_db}:/var/lib/postgresql/9.4
+        - ${volume_db}:/var/lib/postgresql/data
     environment:
         POSTGRES_PASSWORD: postgres
 
