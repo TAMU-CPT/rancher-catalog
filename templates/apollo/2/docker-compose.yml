@@ -1,0 +1,43 @@
+apollo:
+    image: quay.io/erasche/apollo:cpt
+    links:
+        - db
+        - chado
+    environment:
+      CONTEXT_PATH: ${CONTEXT_PATH}
+      WEBAPOLLO_DB_USERNAME: postgres
+      WEBAPOLLO_DB_PASSWORD: postgres
+      WEBAPOLLO_DB_DRIVER: "org.postgresql.Driver"
+      WEBAPOLLO_DB_DIALECT: "org.hibernate.dialect.PostgresPlusDialect"
+      WEBAPOLLO_DB_URI: "jdbc:postgresql://db.apollo.rancher.internal/postgres"
+      WEBAPOLLO_CHADO_DB_USERNAME: postgres
+      WEBAPOLLO_CHADO_DB_PASSWORD: postgres
+      WEBAPOLLO_CHADO_DB_DRIVER: "org.postgresql.Driver"
+      WEBAPOLLO_CHADO_DB_DIALECT: "org.hibernate.dialect.PostgresPlusDialect"
+      WEBAPOLLO_CHADO_DB_URI: "jdbc:postgresql://chado.apollo.rancher.internal/postgres"
+    volume_driver: convoy-nfs
+    volumes:
+        - ${volume_apollo}:/data
+    labels:
+        io.rancher.container.pull_image: always
+
+db:
+    image: erasche/chado:latest
+    volume_driver: convoy-nfs
+    volumes:
+        - ${volume_db}:/var/lib/postgresql/9.4
+    environment:
+        POSTGRES_PASSWORD: postgres
+    labels:
+        io.rancher.container.pull_image: always
+
+chado:
+    image: erasche/chado:latest
+    volume_driver: convoy-nfs
+    volumes:
+        - ${volume_chado}:/var/lib/postgresql/9.4
+    environment:
+        INSTALL_CHADO_SCHEMA: 1
+        POSTGRES_PASSWORD: postgres
+    labels:
+        io.rancher.container.pull_image: always
