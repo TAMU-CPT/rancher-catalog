@@ -1,0 +1,65 @@
+db:
+    image: postgres:9.5
+    environment:
+        POSTGRES_PASSWORD: password
+    volumes:
+        - ./pg_data:/var/lib/postgresql/data
+
+redis:
+    image: redis
+
+
+
+sentry:
+    image: slafs/sentry
+    #build: .
+    environment:
+        SECRET_KEY: QOLvY7T7iMmU7teWywS2SXTSBTdCAJeDauLN6TkFu
+        CELERY_ALWAYS_EAGER: 'False'
+        SENTRY_BROKER_URL: redis://redis:6379/1
+        DATABASE_URL: "postgres://postgres:password@postgresdb/postgres"
+        CACHE_URL: hiredis://redis:6379/2
+        C_FORCE_ROOT: 1
+
+        SENTRY_ADMIN_USERNAME: admin
+        SENTRY_ADMIN_PASSWORD: password
+        SENTRY_ADMIN_EMAIL: hxr@tamu.edu
+
+        SENTRY_INITIAL_TEAM: cpt
+        SENTRY_INITIAL_PROJECT: galaxy
+        SENTRY_INITIAL_DOMAINS: "*"
+        SENTRY_DOCKER_DO_DB_CHECK: 'yes'
+        SENTRY_USE_X_FORWARDED_HOST: 'yes'
+
+        SENTRY_URL_PREFIX: 'http://biobio-monitor.tamu.edu'
+    ports:
+        - '127.0.0.1:9000:9000'
+    links:
+        - db:postgresdb
+        - redis
+sentry_celery_worker:
+    image: slafs/sentry
+    links:
+        - redis
+        - db:postgresdb
+    volumes:
+        - ./celery:/data
+    command: 'celery worker -B'
+    environment:
+        SECRET_KEY: QOLvY7T7iMmU7teWywS2SXTSBTdCAJeDauLN6TkFu
+        CELERY_ALWAYS_EAGER: 'False'
+        SENTRY_BROKER_URL: redis://redis:6379/1
+        DATABASE_URL: "postgres://postgres:password@postgresdb/postgres"
+        CACHE_URL: hiredis://redis:6379/2
+        C_FORCE_ROOT: 1
+
+        SENTRY_ADMIN_USERNAME: admin
+        SENTRY_ADMIN_PASSWORD: password
+        SENTRY_ADMIN_EMAIL: hxr@tamu.edu
+
+        SENTRY_INITIAL_TEAM: cpt
+        SENTRY_INITIAL_PROJECT: galaxy
+        SENTRY_INITIAL_DOMAINS: "*"
+        SENTRY_DOCKER_DO_DB_CHECK: 'yes'
+
+        SENTRY_URL_PREFIX: 'http://biobio-monitor.tamu.edu'
