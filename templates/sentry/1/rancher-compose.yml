@@ -1,0 +1,31 @@
+.catalog:
+  name: Sentry
+  version: 8.5.0-rancher1
+  description: Sentry is a realtime event logging and aggregation platform
+
+  questions:
+    - variable: "sentry_secret_key"
+      type: "password"
+      required: true
+      label: "SENTRY_SECRET_KEY"
+      description: "A secret key used for cryptographic functions within Sentry. see https://hub.docker.com/_/sentry/ for more info"
+
+    - variable: "sentry_inital_user_email"
+      type: "string"
+      required: true
+      default: "root@local.host"
+      label: "SENTRY_INITAL_USER_EMAIL"
+      description: "The initial superuser email"
+
+    - variable: "sentry_inital_user_password"
+      type: "password"
+      required: true
+      label: "SENTRY_INITAL_USER_PASSWORD"
+      description: "The initial superuser password. Please use a simple intial password and change it afterwards in the Sentry interface"
+
+    - variable: "sentry_db"
+      type: "string"
+      description: "Work volume to save data"
+      label: "Convoy Volume Name"
+      default: "sentry_db"
+      required: true
