@@ -13,6 +13,7 @@
     - variable: "sentry_inital_user_email"
       type: "string"
       required: true
+      default: "root@local.host"
       label: "SENTRY_INITAL_USER_EMAIL"
       description: "The initial superuser email"
 
@@ -21,3 +22,10 @@
       required: true
       label: "SENTRY_INITAL_USER_PASSWORD"
       description: "The initial superuser password. Please use a simple intial password and change it afterwards in the Sentry interface"
+
+    - variable: "sentry_db"
+      type: "string"
+      description: "Work volume to save data"
+      label: "Convoy Volume Name"
+      default: "sentry_db"
+      required: true
