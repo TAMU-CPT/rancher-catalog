@@ -1,0 +1,30 @@
+.catalog:
+  name: CPT LIMS
+  version: 1-rancher1
+  description: |
+     Lab Information Management System and Phage Database
+  questions:
+  - variable: "BACKEND_HOST"
+    type: "string"
+    label: "Backend Host + Protocol Path"
+    description: ""
+    default: "https://cpt.tamu.edu/"
+    required: true
+  - variable: "BACKEND_URL_PREFIX"
+    type: "string"
+    label: "Backend URL Path"
+    description: "Subdirectory to run API server under. Must not have trailing or leading slashc."
+    default: "lims-backend"
+    required: true
+  - variable: "FRONTEND_URL_PREFIX"
+    type: "string"
+    label: "Frontend URL Path"
+    description: "Subdirectory to serve JS frontend from. Must have leading slash."
+    default: "/lims"
+    required: true
+  - variable: "volume_db"
+    type: "string"
+    description: "Work volume to save jenkins data"
+    label: "Convoy Volume Name"
+    default: "lims-db"
+    required: true
