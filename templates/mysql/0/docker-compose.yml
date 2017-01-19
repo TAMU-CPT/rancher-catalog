@@ -1,0 +1,8 @@
+mysql:
+  image: tutum/mysql:latest
+  volumes:
+    - ${db_volume}:/var/lib/mysql
+  volume_driver: convoy-nfs
+  environment:
+    MYSQL_PASS: ${mysql_password}
+  mem_limit: 4000000000
