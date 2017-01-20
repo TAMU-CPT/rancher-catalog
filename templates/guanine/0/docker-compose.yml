@@ -1,39 +1,43 @@
-postgres:
-    image: postgres:9.5
-    volume_driver: convoy-nfs
-    volumes:
-        - ${volume_guanine_db}:/var/lib/postgresql/data
-    environment:
-        POSTGRES_PASSWORD: postgres
+version: '2'
+volumes:
+    guanine_db:
+        driver: rancher-nfs
+services:
+    postgres:
+        image: postgres:9.5
+        volumes:
+            - guanine_db:/var/lib/postgresql/data
+        environment:
+            POSTGRES_PASSWORD: postgres
 
-api-server:
-    image: quay.io/tamu_cpt/guanine-backend:latest
-    links:
-        - postgres:db
-    environment:
-        DJANGO_URL_PREFIX: ${BACKEND_URL_PREFIX}/
-        CORS_ORIGINS: cpt.tamu.edu,localhost
-        ALLOWED_HOSTS: cpt.tamu.edu,localhost
-        DB_HOSTNAME: postgres.guanine.rancher.internal
-    labels:
-        io.rancher.container.pull_image: always
+    api-server:
+        image: quay.io/tamu_cpt/guanine-backend:latest
+        links:
+            - postgres:db
+        environment:
+            DJANGO_URL_PREFIX: ${BACKEND_URL_PREFIX}/
+            CORS_ORIGINS: cpt.tamu.edu,localhost
+            ALLOWED_HOSTS: cpt.tamu.edu,localhost
+            DB_HOSTNAME: postgres.guanine.rancher.internal
+        labels:
+            io.rancher.container.pull_image: always
 
-static-server:
-    image: quay.io/tamu_cpt/staticfileserver:latest
-    volumes_from:
-      - static-builder
-    environment:
-      ROOT_DIR: /output
-      PATH_PREFIX: ${FRONTEND_URL_PREFIX}
-    labels:
-        io.rancher.sidekicks: static-builder
+    static-server:
+        image: quay.io/tamu_cpt/staticfileserver:latest
+        volumes_from:
+          - static-builder
+        environment:
+          ROOT_DIR: /output
+          PATH_PREFIX: ${FRONTEND_URL_PREFIX}
+        labels:
+            io.rancher.sidekicks: static-builder
 
-static-builder:
-    image: quay.io/tamu_cpt/guanine-frontend:latest
-    volumes:
-        - /output
-    environment:
-        BACKEND_URL: ${BACKEND_HOST}${BACKEND_URL_PREFIX}
-    labels:
-        io.rancher.container.start_once: true
-        io.rancher.container.pull_image: always
+    static-builder:
+        image: quay.io/tamu_cpt/guanine-frontend:latest
+        volumes:
+            - /output
+        environment:
+            BACKEND_URL: ${BACKEND_HOST}${BACKEND_URL_PREFIX}
+        labels:
+            io.rancher.container.start_once: true
+            io.rancher.container.pull_image: always
