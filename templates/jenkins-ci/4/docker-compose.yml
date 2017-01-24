@@ -1,27 +1,31 @@
-jenkins-primary:
-  image: "jenkins:2.7.4"
-  ports:
-    - "8080"
-  labels:
-    io.rancher.sidekicks: jenkins-plugins,jenkins-datavolume
-    io.rancher.container.hostname_override: container_name
-  volumes_from:
-    - jenkins-plugins
-    - jenkins-datavolume
-  entrypoint: /usr/share/jenkins/rancher/jenkins.sh
-  environment:
-    JENKINS_OPTS: "--prefix=${CONTEXT_PATH}"
-    JAVA_OPTS: "-Xmx2048m"
-  mem_limit: 2000000000
+version: '2'
+volumes:
+    data:
+        driver: rancher-nfs
+services:
+    jenkins-primary:
+        image: "jenkins:2.32.1"
+        ports:
+            - "8080"
+        labels:
+            io.rancher.sidekicks: jenkins-plugins,jenkins-datavolume
+            io.rancher.container.hostname_override: container_name
+        volumes_from:
+            - jenkins-plugins
+            - jenkins-datavolume
+        entrypoint: /usr/share/jenkins/rancher/jenkins.sh
+        environment:
+            JENKINS_OPTS: "--prefix=${CONTEXT_PATH}"
+            JAVA_OPTS: "-Xmx2048m"
+        mem_limit: 2000000000
 
-jenkins-plugins:
-  image: rancher/jenkins-plugins:v0.1.1
+    jenkins-plugins:
+        image: rancher/jenkins-plugins:v0.1.1
 
-jenkins-datavolume:
-  image: "busybox"
-  volumes:
-    - ${volume_work}:/var/jenkins_home
-  labels:
-    io.rancher.container.start_once: true
-  volume_driver: convoy-nfs
-  entrypoint: ["chown", "-R", "1000:1000", "/var/jenkins_home"]
+    jenkins-datavolume:
+        image: "busybox"
+        volumes:
+            - data:/var/jenkins_home
+        labels:
+            io.rancher.container.start_once: true
+        entrypoint: ["chown", "-R", "1000:1000", "/var/jenkins_home"]
