@@ -2,7 +2,7 @@
   name: CPT Library
   description: |
     Statefull Web based PDF Library
-  version: 1-rancher1
+  version: 1.0.1-rancher1.2
   questions:
   - variable: "volume_work"
     description: "Work volume to save library data / DB"
