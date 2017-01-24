@@ -1,6 +1,6 @@
 .catalog:
   name: CPT LIMS
-  version: 1-rancher0
+  version: 0.0.1-rancher1.2
   description: |
      Lab Information Management System and Phage Database
   questions:
