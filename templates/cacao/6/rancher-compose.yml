@@ -1,6 +1,6 @@
 .catalog:
   name: CACAO
-  version: 2-rancher4
+  version: 2-rancher1.3
   description: |
     CACAO Service
   questions:
@@ -21,10 +21,4 @@
     label: "Frontend URL Path"
     description: "Subdirectory to serve JS frontend from. Must have leading slash."
     default: "/cacao"
-    required: true
-  - variable: "volume_cacao_db"
-    type: "string"
-    description: "Work volume to save jenkins data"
-    label: "Convoy Volume Name"
-    default: "cacao-db"
     required: true

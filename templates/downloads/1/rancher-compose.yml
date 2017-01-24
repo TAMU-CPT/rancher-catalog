@@ -3,19 +3,13 @@
   description: |
     Simple place to dump files / folders of stuff that should be provided as
     downloads for end users.
-  version: 1-rancher1
+  version: 1-rancher1.3
   questions:
   - variable: "URL_PREFIX"
     type: "string"
     label: "Frontend URL Path"
     description: "Subdirectory to serve static files from"
     default: "/dot"
-    required: true
-  - variable: "VOLUME_NAME"
-    type: "string"
-    label: "Volume name"
-    description: "Convoy-NFS Volume Name"
-    default: "data"
     required: true
   - variable: "AUTO_INDEX"
     type: "string"

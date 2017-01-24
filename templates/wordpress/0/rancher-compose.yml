@@ -3,3 +3,10 @@
   description: |
     The WordPress rich content management system can utilize plugins, widgets, and themes.
   version: 1-rancher0
+  questions:
+  - variable: "DATABASE_PASSWORD"
+    type: "password"
+    label: "Database Password"
+    description: ""
+    default: ""
+    required: true

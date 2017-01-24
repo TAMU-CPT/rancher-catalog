@@ -1,6 +1,6 @@
 .catalog:
   name: CPT LIMS
-  version: 1-rancher1
+  version: 0.3.0-rancher1.3
   description: |
      Lab Information Management System and Phage Database
   questions:
@@ -21,10 +21,4 @@
     label: "Frontend URL Path"
     description: "Subdirectory to serve JS frontend from. Must have leading slash."
     default: "/lims"
-    required: true
-  - variable: "volume_db"
-    type: "string"
-    description: "Work volume to save jenkins data"
-    label: "Convoy Volume Name"
-    default: "lims-db"
     required: true

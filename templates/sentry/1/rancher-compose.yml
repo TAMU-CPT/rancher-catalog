@@ -1,6 +1,6 @@
 .catalog:
   name: Sentry
-  version: 8.5.0-rancher1
+  version: 8.5.0-rancher1.3
   description: Sentry is a realtime event logging and aggregation platform
 
   questions:
@@ -22,10 +22,3 @@
       required: true
       label: "SENTRY_INITAL_USER_PASSWORD"
       description: "The initial superuser password. Please use a simple intial password and change it afterwards in the Sentry interface"
-
-    - variable: "sentry_db"
-      type: "string"
-      description: "Work volume to save data"
-      label: "Convoy Volume Name"
-      default: "sentry_db"
-      required: true

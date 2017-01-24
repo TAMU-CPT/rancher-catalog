@@ -1,17 +1,21 @@
-wordpress:
-  image: wordpress
-  links:
-    - mysql
-  ports:
-    - 80
-  environment:
-    WORDPRESS_DB_PASSWORD: 0dGdmwLyQ3AjW79MYDtRHzE
+version: '2'
+volumes:
+    data:
+        driver: rancher-nfs
+services:
+    wordpress:
+        image: wordpress
+        links:
+            - mysql
+        ports:
+            - 80
+        environment:
+            WORDPRESS_DB_PASSWORD: ${DATABASE_PASSWORD}
 
-mysql:
-  image: tutum/mysql:latest
-  volumes:
-    - wordpress:/var/lib/mysql
-  volume_driver: convoy-nfs
-  environment:
-    MYSQL_PASS: 0dGdmwLyQ3AjW79MYDtRHzE
-  mem_limit: 4000000000
+    mysql:
+        image: tutum/mysql:latest
+        volumes:
+            - data:/var/lib/mysql
+        environment:
+            MYSQL_PASS: ${DATABASE_PASSWORD}
+        mem_limit: 4000000000
