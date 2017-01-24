@@ -1,4 +1,4 @@
 category: Continuous Integration
 description: Jenkins CI management server.
 name: Jenkins
-version: 2.7.4-rancher1.3
+version: 2.32.1-rancher1.3
