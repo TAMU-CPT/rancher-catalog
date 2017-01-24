@@ -7,6 +7,7 @@ import glob
 
 for tpl in sorted(glob.glob("*")):
     if '.py' in tpl: continue
+    if 'Makefile' in tpl: continue
 
     # Get the subdirs + files
     contents = glob.glob(os.path.join(tpl, '*'))
