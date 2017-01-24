@@ -1,6 +1,6 @@
 .catalog:
   name: CPT Apollo
-  version: 2.0.4-rancher1.3
+  version: 2.0.5-rancher1.3
   description: |
     Genome annotation editor with a Java Server backend and a Javascript client
     that runs in a web browser as a JBrowse plugin.
