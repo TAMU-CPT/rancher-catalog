@@ -1,6 +1,6 @@
 .catalog:
   name: CACAO
-  version: 1-rancher2
+  version: 1.0.2-rancher1.2
   description: |
     CACAO Service
   questions:
