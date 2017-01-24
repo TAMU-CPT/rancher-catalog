@@ -1,10 +1,11 @@
 #!/usr/bin/env python
+import os
+import sys
 import yaml
 import glob
-import os
 
 
-for tpl in glob.glob("*"):
+for tpl in sorted(glob.glob("*")):
     if '.py' in tpl: continue
 
     # Get the subdirs + files
@@ -17,6 +18,8 @@ for tpl in glob.glob("*"):
     with open(os.path.join(tpl, str(latest), 'rancher-compose.yml'), 'r') as handle:
         data = yaml.load(handle)
         config = data['.catalog']
+
+    sys.stderr.write('%20s %s\n' % (tpl, config['version']))
 
     with open(os.path.join(tpl, 'config.yml'), 'r+') as handle:
         main_conf = yaml.load(handle)
