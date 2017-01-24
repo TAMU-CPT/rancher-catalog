@@ -1,5 +1,5 @@
 .catalog:
   name: Phage Registry
-  version: 2-rancher1
+  version: 2.0.0-rancher1.3
   description: |
     CPT Phage Registry

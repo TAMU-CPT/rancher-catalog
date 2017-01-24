@@ -2,7 +2,7 @@
   name: CPT Wordpress
   description: |
     The WordPress rich content management system can utilize plugins, widgets, and themes.
-  version: 1-rancher0
+  version: 0.0.1-rancher1.3
   questions:
   - variable: "DATABASE_PASSWORD"
     type: "password"

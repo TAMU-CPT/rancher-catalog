@@ -1,4 +1,4 @@
 category: Services
 description: HTCondor container for executing CPT's Galaxy Jobs.
 name: CPT Condor Cluster
-version: 1-rancher0
+version: 0.0.1-rancher1.3

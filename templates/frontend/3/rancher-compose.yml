@@ -1,8 +1,7 @@
 .catalog:
   name: CPT Frontend Proxy
-  version: 3
-  description: |
-    Proxy service proxying all our backend infrastructure
+  version: 3.0.0-rancher1.3
+  description: Proxy service proxying all our backend infrastructure
 lb:
   scale: 1
   load_balancer_config:

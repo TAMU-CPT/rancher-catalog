@@ -4,4 +4,4 @@ description: 'Genome annotation editor with a Java Server backend and a Javascri
 
   that runs in a web browser as a JBrowse plugin.'
 name: CPT Apollo
-version: 2.0.4-cpt-rancher3
+version: 2.0.4-rancher1.3

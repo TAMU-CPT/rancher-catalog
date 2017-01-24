@@ -1,6 +1,6 @@
 .catalog:
   name: GUANINE
-  version: 1-rancher1.3
+  version: 1.0.0-rancher1.3
   description: |
      Galaxy stUdent AssessmeNt INfrastructurE
   questions:

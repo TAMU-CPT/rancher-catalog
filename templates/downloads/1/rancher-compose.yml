@@ -1,9 +1,7 @@
 .catalog:
   name: CPT Static File Server
-  description: |
-    Simple place to dump files / folders of stuff that should be provided as
-    downloads for end users.
-  version: 1-rancher1.3
+  description: Simple place to dump files / folders of stuff that should be provided as downloads for end users.
+  version: 1.0.0-rancher1.3
   questions:
   - variable: "URL_PREFIX"
     type: "string"
