@@ -1,4 +1,4 @@
 category: Services
 description: Stateless code128 + QR code server
 name: CPT Barcode Server
-version: 1.0.3-rancher1.3
+version: 1.0.8-rancher1.3

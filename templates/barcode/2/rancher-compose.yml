@@ -2,7 +2,7 @@
   name: CPT Barcode Server
   description: |
     Stateless code128 + QR code server
-  version: 3-rancher0
+  version: 1.0.3-rancher1.2
   questions:
   - variable: "LISTEN_PATH"
     type: "string"
