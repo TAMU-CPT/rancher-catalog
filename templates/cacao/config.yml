@@ -1,5 +1,4 @@
-name: CPT CACAO
-description: |
-  Community Assessment of Community Annotations with Ontologies
-version: 2-rancher4
 category: Services
+description: CACAO Service
+name: CACAO
+version: 2-rancher1.3

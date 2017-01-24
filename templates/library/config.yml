@@ -1,5 +1,4 @@
-name: CPT Library
-description: |
-  Statefull Web based PDF Library
-version: 1-rancher2
 category: Services
+description: Statefull Web based PDF Library
+name: CPT Library
+version: 2.0.0-rancher1.3

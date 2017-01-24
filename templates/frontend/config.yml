@@ -1,5 +1,4 @@
-name: CPT Frontend Proxy
-description: |
-  Exposes backend/cluster infrastructure
-version: 3
 category: Proxy
+description: Proxy service proxying all our backend infrastructure
+name: CPT Frontend Proxy
+version: '3'

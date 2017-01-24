@@ -1,6 +1,7 @@
-name: CPT Static File Server
-description: |
-    Simple place to dump files / folders of stuff that should be provided as
-    downloads for end users.
-version: 1-rancher1
 category: Services
+description: 'Simple place to dump files / folders of stuff that should be provided
+  as
+
+  downloads for end users.'
+name: CPT Static File Server
+version: 1-rancher1.3

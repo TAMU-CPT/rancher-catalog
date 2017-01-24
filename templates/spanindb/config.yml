@@ -1,5 +1,4 @@
-name: CPT Spanin DB
-description: |
-    Spanin Database Site
-version: 1-rancher1
 category: Services
+description: Spanin Database Site
+name: CPT Spanin Database
+version: 2.0.0-rancher1.3

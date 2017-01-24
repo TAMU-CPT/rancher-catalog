@@ -1,5 +1,4 @@
-name: CPT LIMS and Phage DB
-description: |
-  Lab Information Management System and Phage Database
-version: 1-rancher1
 category: Services
+description: Lab Information Management System and Phage Database
+name: CPT LIMS
+version: 0.3.0-rancher1.3

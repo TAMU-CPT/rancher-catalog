@@ -1,5 +1,5 @@
-name: CPT Wordpress
-description: |
-  The WordPress rich content management system can utilize plugins, widgets, and themes.
-version: 1-rancher0
 category: Services
+description: The WordPress rich content management system can utilize plugins, widgets,
+  and themes.
+name: CPT Wordpress
+version: 1-rancher0

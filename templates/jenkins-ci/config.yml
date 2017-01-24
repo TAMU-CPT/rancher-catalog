@@ -1,5 +1,4 @@
-name: CPT Jenkins
-description: |
-  Jenkins CI server (LTS)
-version: 1.651.3-rancher4
 category: Continuous Integration
+description: Jenkins CI management server.
+name: Jenkins
+version: 2.7.4-rancher4

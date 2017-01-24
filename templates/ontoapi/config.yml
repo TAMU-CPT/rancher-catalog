@@ -1,5 +1,4 @@
-name: CPT Ontology API
-description: |
-    Turns OBO files into APIs
-version: 1-rancher1
 category: Services
+description: CPT Ontology API
+name: CPT Onto API
+version: 2.0.0-rancher1.3

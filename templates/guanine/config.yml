@@ -1,5 +1,4 @@
-name: CPT GUANINE
-description: |
-  Galaxy stUdent AssessmeNt INfrastructurE
-version: 1-rancher1.3
 category: Services
+description: Galaxy stUdent AssessmeNt INfrastructurE
+name: GUANINE
+version: 1-rancher1.3
