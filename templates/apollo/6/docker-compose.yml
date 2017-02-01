@@ -11,8 +11,8 @@ volumes:
     chado_backup:
         driver: rancher-nfs
 services:
-    remote_user:
-        image: quay.io/erasche/gx-cookie-proxy:v0.9.3
+    remoteuser:
+        image: "quay.io/erasche/gx-cookie-proxy:v0.9.3"
         environment:
           GALAXY_DB_URL: db.postgres.rancher.internal
           GALAXY_SECRET: ${GALAXY_SECRET}
