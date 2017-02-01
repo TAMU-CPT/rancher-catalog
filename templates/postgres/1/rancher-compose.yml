@@ -1,0 +1,19 @@
+.catalog:
+  name: CPT Postgres + Backup
+  description: |
+      Postgres + backup container, built to have a generic database accessible over the network.
+  version: 0.0.2-rancher1.3
+  questions:
+  - variable: "DATABASE_PASSWORD"
+    type: "password"
+    label: "Database Password"
+    description: ""
+    default: ""
+    required: true
+  - variable: "DATABASE_VERSION"
+    type: "enum"
+    label: "Database Version"
+    options:
+        - "postgres:9.4"
+        - "postgres:9.5"
+        - "erasche/chado:1.31-jenkins97-pg9.5"
