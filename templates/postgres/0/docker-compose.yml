@@ -1,0 +1,25 @@
+version: '2'
+volumes:
+    data:
+        driver: rancher-nfs
+    backups:
+        driver: rancher-nfs
+
+services:
+    db:
+        image: postgres:${DATABASE_VERSION}
+        volumes:
+            - data:/var/lib/postgresql/data/
+        environment:
+            POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+
+    backup:
+        image: jmcarbo/docker-postgres-backup
+        environment:
+            CRON_TIME: "0 0 * * *"
+            MAX_BACKUPS: 50
+            INIT_BACKUP: true # Backup on launch
+        links:
+            - db:pg
+        volumes:
+            - backups:/backup

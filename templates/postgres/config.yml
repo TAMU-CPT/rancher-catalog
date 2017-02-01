@@ -1,0 +1,5 @@
+category: Services
+description: Postgres + backup container, built to have a generic database accessible
+  over the network.
+name: CPT Postgres + Backup
+version: 0.0.1-rancher1.3
