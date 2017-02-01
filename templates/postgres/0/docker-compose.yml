@@ -6,7 +6,7 @@ volumes:
         driver: rancher-nfs
 services:
     db:
-        image: postgres:${DATABASE_VERSION}
+        image: ${DATABASE_VERSION}
         volumes:
             - data:/var/lib/postgresql/data/
         environment:
