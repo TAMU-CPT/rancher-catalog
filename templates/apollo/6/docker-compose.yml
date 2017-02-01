@@ -6,9 +6,9 @@ volumes:
         driver: rancher-nfs
     apollo_data:
         driver: rancher-nfs
-    db_backup:
+    dbbackup:
         driver: rancher-nfs
-    chado_backup:
+    chadobackup:
         driver: rancher-nfs
 services:
     remoteuser:
@@ -55,8 +55,8 @@ services:
           POSTGRES_PASSWORD: postgres
         labels:
           io.rancher.container.pull_image: always
-          io.rancher.sidekicks: db_backup
-    db_backup:
+          io.rancher.sidekicks: dbbackup
+    dbbackup:
         image: quay.io/tamu_cpt/postgres-backup:latest
         environment:
           MAX_BACKUPS: 5
@@ -67,7 +67,7 @@ services:
         links:
           - db
         volumes:
-          - db_backup:/backup
+          - dbbackup:/backup
         labels:
           io.rancher.container.pull_image: always
 
@@ -80,8 +80,8 @@ services:
           POSTGRES_PASSWORD: postgres
         labels:
           io.rancher.container.pull_image: always
-          io.rancher.sidekicks: db_backup
-    chado_backup:
+          io.rancher.sidekicks: dbbackup
+    chadobackup:
         image: quay.io/tamu_cpt/postgres-backup:latest
         environment:
           MAX_BACKUPS: 5
@@ -92,6 +92,6 @@ services:
         links:
           - chado
         volumes:
-          - chado_backup:/backup
+          - chadobackup:/backup
         labels:
           io.rancher.container.pull_image: always
