@@ -23,6 +23,7 @@ services:
             POSTGRES_PORT: 5432
             POSTGRES_USER: postgres
             POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+            POSTGRES_DB: "--all-databases"
         links:
             - db:pg
         volumes:
