@@ -1,0 +1,27 @@
+version: '2'
+volumes:
+    data:
+        driver: rancher-nfs
+    backups:
+        driver: rancher-nfs
+services:
+    db:
+        image: ${DATABASE_VERSION}
+        volumes:
+            - data:/var/lib/postgresql/data/
+        environment:
+            POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+        labels:
+            io.rancher.sidekicks: backup
+    backup:
+        image: quay.io/tamu_cpt/postgres-backup:latest
+        environment:
+            MAX_BACKUPS: 5
+            PGHOST: db
+            PGPORT: 5432
+            PGUSER: postgres
+            PGPASSWORD: ${DATABASE_PASSWORD}
+        links:
+            - db:pg
+        volumes:
+            - backups:/backup
