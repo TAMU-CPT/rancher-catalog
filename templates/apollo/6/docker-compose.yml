@@ -12,7 +12,7 @@ volumes:
         driver: rancher-nfs
 services:
     remoteuser:
-        image: "quay.io/erasche/gx-cookie-proxy:v0.9.3"
+        image: "quay.io/erasche/gx-cookie-proxy:latest"
         environment:
           GALAXY_DB_URL: db.postgres.rancher.internal
           GALAXY_SECRET: ${GALAXY_SECRET}
@@ -21,6 +21,8 @@ services:
           - apollo:target
         ports:
           - "8998:5000"
+        labels:
+          io.rancher.container.pull_image: always
 
     apollo:
         image: quay.io/erasche/apollo:cpt
