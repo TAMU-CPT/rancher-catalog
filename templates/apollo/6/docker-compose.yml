@@ -11,6 +11,7 @@ volumes:
     chadobackup:
         driver: rancher-nfs
 services:
+    # Public access
     remoteuser:
         image: "quay.io/erasche/gx-cookie-proxy:latest"
         environment:
@@ -19,10 +20,21 @@ services:
           GXC_BACKEND_URL: "target:8080"
         links:
           - apollo:target
-        ports:
-          - "8998:5000"
+        #ports:
+          #- "5000"
         labels:
           io.rancher.container.pull_image: always
+    # Galaxy / Private Access
+    apiurlremap:
+        image: "quay.io/tamu_cpt/urlremap:latest"
+        environment:
+            INCOMING_PATH_PREFIX: /galaxy/gxc_proxy/apollo_api
+            OUTGOING_PATH_PREFIX: /galaxy/gxc_proxy/apollo
+            BACKEND_PORT: 8080
+        links:
+            - apollo:backend
+        #ports:
+          #- "80"
 
     apollo:
         image: quay.io/erasche/apollo:cpt
