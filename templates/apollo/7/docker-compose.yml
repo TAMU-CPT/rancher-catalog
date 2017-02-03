@@ -15,7 +15,7 @@ services:
     remoteuser:
         image: "quay.io/erasche/gx-cookie-proxy:latest"
         environment:
-          GALAXY_DB_URL: db.postgres.rancher.internal
+          GALAXY_DB_URL: ${GALAXY_DB_URI}
           GALAXY_SECRET: ${GALAXY_SECRET}
           GXC_BACKEND_URL: "target:8080"
         links:

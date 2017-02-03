@@ -9,7 +9,7 @@
     type: "string"
     description: "Subdirectory/ctx path to access the file at. INCLUDING /s WILL NOT WORK."
     label: "Context Path"
-    default: "apollo"
+    default: "galaxy/gxc_proxy/apollo"
     required: true
   - variable: "GALAXY_SECRET"
     type: "string"
@@ -17,3 +17,12 @@
     label: "Galaxy Secret"
     default: "THE DEFAULT IS NOT SECURE!"
     required: true
+  - variable: "GALAXY_DB_URI"
+    type: "string"
+    description: "Database URI"
+    label: "Galaxy Database URI"
+    default: "postgresql://postgres:postgres@db.postgres.rancher.internal:5432/postgres?client_encoding=utf8&sslmode=disable"
+    required: true
+
+
+
