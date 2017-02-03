@@ -1,5 +1,5 @@
 .catalog:
-  name: "Elasticsearch"
+  name: "[CPT] Elasticsearch"
   version: "2.4.4-rancher1"
   description: "Elasticsearch. You know, for search"
   questions:

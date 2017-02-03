@@ -1,5 +1,4 @@
-name: Elasticsearch 2.x
-description: |
-  Elasticsearch, you know for search!
-version: 2.2.2-rancher1
 category: ELK
+description: Elasticsearch. You know, for search
+name: '[CPT] Elasticsearch'
+version: 2.4.4-rancher1
