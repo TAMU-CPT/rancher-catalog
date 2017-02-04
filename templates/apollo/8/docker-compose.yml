@@ -38,14 +38,17 @@ services:
           io.rancher.scheduler.affinity:host_label: role=webserver
         #ports:
           #- "80"
+    # Data mounted on webserver. This is mostly specific to our deployment. We
+    # need the apollo data directory available (i.e. the rancher-nfs volume
+    # mounted) on the host(s) running the apollo tools so that they can copy
+    # data directories in and out.
     datadir:
-        image: busybox
-        command:
-            - "cat"
+        image: "busybox"
         volumes_from:
             - apollo
         labels:
           io.rancher.scheduler.affinity:host_label: role=webserver
+          io.rancher.container.start_once: true
 
     apollo:
         image: quay.io/erasche/apollo:cpt
