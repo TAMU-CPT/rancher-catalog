@@ -1,0 +1,130 @@
+version: '2'
+volumes:
+    chado_db:
+        driver: rancher-nfs
+    primary_db:
+        driver: rancher-nfs
+    apollo_data:
+        driver: rancher-nfs
+    dbbackup:
+        driver: rancher-nfs
+    chadobackup:
+        driver: rancher-nfs
+services:
+    # Public access
+    remoteuser:
+        image: "quay.io/erasche/gx-cookie-proxy:latest"
+        environment:
+          GALAXY_DB_URL: ${GALAXY_DB_URI}
+          GALAXY_SECRET: ${GALAXY_SECRET}
+          GXC_BACKEND_URL: "target:8080"
+        links:
+          - apollo:target
+        #ports:
+          #- "5000"
+        labels:
+          io.rancher.container.pull_image: always
+          io.rancher.scheduler.affinity:host_label: role=webserver
+    # Galaxy / Private Access
+    apiurlremap:
+        image: "quay.io/tamu_cpt/urlremap:latest"
+        environment:
+            INCOMING_PATH_PREFIX: /galaxy/gxc_proxy/apollo_api
+            OUTGOING_PATH_PREFIX: /galaxy/gxc_proxy/apollo
+            BACKEND_PORT: 8080
+        links:
+            - apollo:backend
+        labels:
+          io.rancher.scheduler.affinity:host_label: role=webserver
+        #ports:
+          #- "80"
+    # Data mounted on webserver. This is mostly specific to our deployment. We
+    # need the apollo data directory available (i.e. the rancher-nfs volume
+    # mounted) on the host(s) running the apollo tools so that they can copy
+    # data directories in and out.
+    datadir:
+        image: "busybox"
+        volumes:
+            - apollo_data:/opt/apollo/data/
+        labels:
+          io.rancher.scheduler.affinity:host_label: role=webserver
+          io.rancher.container.start_once: true
+
+    apollo:
+        image: quay.io/erasche/apollo:cpt
+        links:
+          - db
+          - chado
+        ports:
+          - "8999:8080"
+        environment:
+          CONTEXT_PATH: ${CONTEXT_PATH}
+          WEBAPOLLO_DB_USERNAME: postgres
+          WEBAPOLLO_DB_PASSWORD: postgres
+          WEBAPOLLO_DB_DRIVER: "org.postgresql.Driver"
+          WEBAPOLLO_DB_DIALECT: "org.hibernate.dialect.PostgresPlusDialect"
+          WEBAPOLLO_DB_URI: "jdbc:postgresql://db.apollo.rancher.internal/postgres"
+          WEBAPOLLO_CHADO_DB_USERNAME: postgres
+          WEBAPOLLO_CHADO_DB_PASSWORD: postgres
+          WEBAPOLLO_CHADO_DB_DRIVER: "org.postgresql.Driver"
+          WEBAPOLLO_CHADO_DB_DIALECT: "org.hibernate.dialect.PostgresPlusDialect"
+          WEBAPOLLO_CHADO_DB_URI: "jdbc:postgresql://chado.apollo.rancher.internal/postgres"
+        volumes:
+          - apollo_data:/opt/apollo/data/
+        labels:
+          io.rancher.container.pull_image: always
+          io.rancher.scheduler.affinity:host_label: role=compute
+
+    db:
+        image: erasche/chado:1.31-jenkins97-pg9.5
+        volumes:
+          - primary_db:/var/lib/postgresql/data/
+        environment:
+          INSTALL_CHADO_SCHEMA: 0
+          POSTGRES_PASSWORD: postgres
+        labels:
+          io.rancher.container.pull_image: always
+          io.rancher.sidekicks: dbbackup
+          io.rancher.scheduler.affinity:host_label: role=compute
+    dbbackup:
+        image: quay.io/tamu_cpt/postgres-backup:latest
+        environment:
+          MAX_BACKUPS: 5
+          PGHOST: db
+          PGPORT: 5432
+          PGUSER: postgres
+          PGPASSWORD: postgres
+        links:
+          - db
+        volumes:
+          - dbbackup:/backup
+        labels:
+          io.rancher.container.pull_image: always
+          io.rancher.scheduler.affinity:host_label: role=compute
+
+    chado:
+        image: erasche/chado:1.31-jenkins97-pg9.5
+        volumes:
+          - chado_db:/var/lib/postgresql/data/
+        environment:
+          INSTALL_CHADO_SCHEMA: 1
+          POSTGRES_PASSWORD: postgres
+        labels:
+          io.rancher.container.pull_image: always
+          io.rancher.sidekicks: chadobackup
+          io.rancher.scheduler.affinity:host_label: role=compute
+    chadobackup:
+        image: quay.io/tamu_cpt/postgres-backup:latest
+        environment:
+          MAX_BACKUPS: 5
+          PGHOST: chado
+          PGPORT: 5432
+          PGUSER: postgres
+          PGPASSWORD: postgres
+        links:
+          - chado
+        volumes:
+          - chadobackup:/backup
+        labels:
+          io.rancher.container.pull_image: always
+          io.rancher.scheduler.affinity:host_label: role=compute
