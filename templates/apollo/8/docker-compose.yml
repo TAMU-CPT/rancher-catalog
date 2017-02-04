@@ -44,8 +44,8 @@ services:
     # data directories in and out.
     datadir:
         image: "busybox"
-        volumes_from:
-            - apollo
+        volumes:
+            - apollo_data:/opt/apollo/data/
         labels:
           io.rancher.scheduler.affinity:host_label: role=webserver
           io.rancher.container.start_once: true
