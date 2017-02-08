@@ -1,0 +1,18 @@
+.catalog:
+  name: CPT Onto API
+  version: 2.0.0-rancher1.3.1
+  description: |
+    CPT Ontology API
+  questions:
+    - variable: "OBO_URLS"
+      label: "OBO Urls"
+      description: "Newline (space?) separated list of URLs"
+      type: "string"
+      default: "http://geneontology.org/ontology/go.obo http://geneontology.org/ontology/go.obo http://aclame.ulb.ac.be/Classification/MeGO/MeGO_2.1.obo"
+      required: true
+    - variable: "FRONTEND_URL_PREFIX"
+      type: "string"
+      label: "Frontend URL Path"
+      description: "Subdirectory to serve JS frontend from. Must have leading slash."
+      default: "/onto_api"
+      required: true
