@@ -7,7 +7,7 @@
   questions:
   - variable: "CONTEXT_PATH"
     type: "string"
-    description: "Subdirectory/ctx path to access the file at. INCLUDING /s WILL NOT WORK."
+    description: "Subdirectory/ctx path to access the file at. DO NOT INCLUDE LEADING OR TRAILING SLASH. Internal slashes are fine."
     label: "Context Path"
     default: "apollo"
     required: true
