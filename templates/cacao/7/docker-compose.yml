@@ -48,7 +48,7 @@ services:
             io.rancher.sidekicks: static-builder
 
     static-builder:
-        image: quay.io/tamu_cpt/cacao-frontend:master
+        image: quay.io/tamu_cpt/cacao-frontend:remote_user
         volumes:
             - /output
         environment:
