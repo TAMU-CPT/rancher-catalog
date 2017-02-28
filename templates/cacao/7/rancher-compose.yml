@@ -1,0 +1,36 @@
+.catalog:
+  name: CACAO
+  version: 2.1.0-rancher1.3
+  description: |
+    CACAO Service
+  questions:
+  - variable: "BACKEND_HOST"
+    type: "string"
+    label: "Backend Host + Protocol Path"
+    description: ""
+    default: "https://cpt.tamu.edu/"
+    required: true
+  - variable: "BACKEND_URL_PREFIX"
+    type: "string"
+    label: "Backend URL Path"
+    description: "Subdirectory to run CACAO API server under. Must not have trailing or leading slashc."
+    default: "cacao-backend"
+    required: true
+  - variable: "FRONTEND_URL_PREFIX"
+    type: "string"
+    label: "Frontend URL Path"
+    description: "Subdirectory to serve JS frontend from. Must have leading slash."
+    default: "/cacao"
+    required: true
+  - variable: "GALAXY_SECRET"
+    type: "string"
+    description: "Secret to access galaxy DB"
+    label: "Galaxy Secret"
+    default: "THE DEFAULT IS NOT SECURE!"
+    required: true
+  - variable: "GALAXY_DB_URI"
+    type: "string"
+    description: "Database URI"
+    label: "Galaxy Database URI"
+    default: "postgresql://postgres:postgres@db.postgres.rancher.internal:5432/postgres?client_encoding=utf8&sslmode=disable"
+    required: true
