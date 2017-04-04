@@ -1,0 +1,10 @@
+version: '2'
+services:
+  lb:
+    image: rancher/lb-service-haproxy:v0.6.2
+    ports:
+    - 9999:9999/tcp
+    labels:
+      io.rancher.scheduler.affinity:host_label: role=webserver
+      io.rancher.container.agent.role: environmentAdmin
+      io.rancher.container.create_agent: 'true'
