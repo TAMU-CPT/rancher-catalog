@@ -12,8 +12,6 @@ services:
       port_rules:
       - {hostname: '', priority: 1, protocol: http, source_port: 9999, service: apollo/apiurlremap         , path: /apollo_api     , target_port: 80}
       - {hostname: '', priority: 1, protocol: http, source_port: 9999, service: apollo/remoteuser          , path: /apollo         , target_port: 5000}
-      - {hostname: '', priority: 1, protocol: http, source_port: 9999, service: apollo-testing/apiurlremap , path: /apollo-testing_api     , target_port: 80}
-      - {hostname: '', priority: 1, protocol: http, source_port: 9999, service: apollo-testing/remoteuser  , path: /apollo-testing         , target_port: 5000}
       - {hostname: '', priority: 1, protocol: http, source_port: 9999, service: barcode/lb                 , path: /barcodes       , target_port: 5000 }
       - {hostname: '', priority: 1, protocol: http, source_port: 9999, service: cacao/remoteuser           , path: /cacao-backend  , target_port: 5000 }
       - {hostname: '', priority: 1, protocol: http, source_port: 9999, service: cacao/static-server        , path: /cacao          , target_port: 80 }
@@ -21,7 +19,6 @@ services:
       - {hostname: '', priority: 1, protocol: http, source_port: 9999, service: downloads/fileserver       , path: /dot            , target_port: 80 }
       - {hostname: '', priority: 1, protocol: http, source_port: 9999, service: guanine/api-server         , path: /guanine-backend, target_port: 8000 }
       - {hostname: '', priority: 1, protocol: http, source_port: 9999, service: guanine/static-server      , path: /guanine        , target_port: 80 }
-      - {hostname: '', priority: 1, protocol: http, source_port: 9999, service: jenkins-ci/jenkins-primary , path: /jenkins2       , target_port: 8080 }
       - {hostname: '', priority: 1, protocol: http, source_port: 9999, service: library/library            , path: /library        , target_port: 80 }
       - {hostname: '', priority: 1, protocol: http, source_port: 9999, service: lims/api-server            , path: /lims-backend   , target_port: 8000 }
       - {hostname: '', priority: 1, protocol: http, source_port: 9999, service: lims/static-server         , path: /lims           , target_port: 80 }
@@ -29,7 +26,6 @@ services:
       - {hostname: '', priority: 1, protocol: http, source_port: 9999, service: spanindb/spanindb-api      , path: /spanindb-api   , target_port: 8000 }
       - {hostname: '', priority: 1, protocol: http, source_port: 9999, service: spanindb/static-server     , path: /spanindb       , target_port: 80 }
       - {hostname: '', priority: 1, protocol: http, source_port: 9999, service: grafana/grafana            , path: /grafana        , target_port: 3000 }
-      #- {hostname: '', priority: 1, protocol: http, source_port: 9999, service: ontoapi/static-server      , path: /onto_api       , target_port: 80 }
     health_check:
       response_timeout: 2000
       healthy_threshold: 2
