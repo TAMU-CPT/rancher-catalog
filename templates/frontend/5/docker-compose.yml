@@ -1,7 +1,7 @@
 version: '2'
 services:
   lb:
-    image: rancher/lb-service-haproxy:v0.4.9
+    image: rancher/lb-service-haproxy:v0.6.2
     ports:
     - 9999:9999/tcp
     labels:
