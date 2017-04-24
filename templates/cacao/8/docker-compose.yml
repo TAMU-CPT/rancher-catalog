@@ -1,0 +1,61 @@
+version: '2'
+volumes:
+    db:
+        driver: rancher-nfs
+
+services:
+    postgres:
+        image: postgres:9.5
+        volumes:
+            - db:/var/lib/postgresql/data
+        environment:
+            POSTGRES_PASSWORD: postgres
+
+    remoteuser:
+        image: "quay.io/erasche/gx-cookie-proxy:latest"
+        environment:
+          GALAXY_DB_URL: ${GALAXY_DB_URI}
+          GALAXY_SECRET: ${GALAXY_SECRET}
+          GXC_BACKEND_URL: "target:8000"
+          # Django won't accept the normal REMOTE_USER for whatever reason, it must be REMOTE-USER
+          GXC_HEADER: "REMOTE-USER"
+          GXC_GRAPHITE: ${GXC_GRAPHITE_SERVER}
+          GXC_GRAPHITE_PORT: 2003
+          GXC_GRAPHITE_PREFIX: ${GXC_GRAPHITE_PREFIX}
+        links:
+          - api-server:target
+        labels:
+          io.rancher.container.pull_image: always
+          io.rancher.scheduler.affinity:host_label: role=webserver
+
+    api-server:
+        image: quay.io/tamu_cpt/cacao-backend:master
+        links:
+            - postgres:db
+        environment:
+            DJANGO_URL_PREFIX: ${BACKEND_URL_PREFIX}/
+            CORS_ORIGINS: cpt.tamu.edu,localhost
+            ALLOWED_HOSTS: cpt.tamu.edu,localhost
+            DB_HOSTNAME: postgres.cacao.rancher.internal
+        labels:
+            io.rancher.container.pull_image: always
+
+    static-server:
+        image: quay.io/tamu_cpt/staticfileserver:latest
+        volumes_from:
+          - static-builder
+        environment:
+          ROOT_DIR: /output
+          PATH_PREFIX: ${FRONTEND_URL_PREFIX}
+        labels:
+            io.rancher.sidekicks: static-builder
+
+    static-builder:
+        image: quay.io/tamu_cpt/cacao-frontend:remote_user
+        volumes:
+            - /output
+        environment:
+            CACAO_BACKEND_URL: ${BACKEND_HOST}${BACKEND_URL_PREFIX}
+        labels:
+            io.rancher.container.start_once: true
+            io.rancher.container.pull_image: always
