@@ -31,7 +31,6 @@ services:
             image: infinityworks/prom-conf:19
             volumes:
                 - prom_data:/etc/prom-conf/
-            net: none
 
     prometheus:
             tty: true
@@ -58,7 +57,6 @@ services:
             command: cat
             volumes:
                 - graf_data:/var/lib/grafana/
-            net: none
 
     grafana:
             tty: true
