@@ -51,6 +51,16 @@ services:
             extra_hosts:
             - "rancher-server:${RANCHER_SERVER}"
 
+    influxdb:
+        image: tutum/influxdb:0.10
+        ports:
+            - 2003:2003
+        environment:
+            - PRE_CREATE_DB=grafana;prometheus;rancher
+            - GRAPHITE_DB=rancher
+            - GRAPHITE_BINDING=:2003
+
+
     graf-db:
             tty: true
             image: infinityworks/graf-db:11
