@@ -1,6 +1,6 @@
 version: '2'
 volumes:
-    prom_data:
+    prom_conf_data:
         driver: rancher-nfs
     prom_data:
         driver: rancher-nfs
@@ -30,7 +30,7 @@ services:
             tty: true
             image: infinityworks/prom-conf:19
             volumes:
-                - prom_data:/etc/prom-conf/
+                - prom_conf_data:/etc/prom-conf/
 
     prometheus:
             tty: true
