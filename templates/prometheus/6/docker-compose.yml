@@ -1,6 +1,6 @@
 version: '2'
 volumes:
-    prom_conf:
+    prom_data:
         driver: rancher-nfs
     prom_data:
         driver: rancher-nfs
@@ -30,7 +30,7 @@ services:
             tty: true
             image: infinityworks/prom-conf:19
             volumes:
-                - prom_conf:/etc/prom-conf/
+                - prom_data:/etc/prom-conf/
             net: none
 
     prometheus:
@@ -76,6 +76,6 @@ services:
     prometheus-rancher-exporter:
             tty: true
             labels:
-                io.rancher.container.create_agent: "true"
+                io.rancher.container.create_agent: true
                 io.rancher.container.agent.role: environment
             image: infinityworks/prometheus-rancher-exporter:v0.22.52
