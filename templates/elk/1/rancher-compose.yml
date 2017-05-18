@@ -1,0 +1,5 @@
+.catalog:
+  name: CPT ELK Stack
+  description: |
+    elky elk elk
+  version: 1.0.1-rancher1.2
