@@ -60,7 +60,6 @@ services:
             - GRAPHITE_DB=rancher
             - GRAPHITE_BINDING=:2003
 
-
     graf-db:
             tty: true
             image: infinityworks/graf-db:11
