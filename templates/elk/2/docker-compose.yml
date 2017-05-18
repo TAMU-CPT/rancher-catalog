@@ -1,0 +1,30 @@
+version: '2'
+volumes:
+    es_data:
+        driver: rancher-nfs
+services:
+  elasticsearch:
+    image: quay.io/tamu_cpt/elasticsearch
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+
+  logstash:
+    image: quay.io/tamu_cpt/logstash
+    ports:
+      - "5000:5000"
+    environment:
+      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+    depends_on:
+      - elasticsearch
+
+  kibana:
+    image: quay.io/tamu_cpt/kibana
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
