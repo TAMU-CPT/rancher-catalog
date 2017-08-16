@@ -2,6 +2,8 @@ version: '2'
 volumes:
     db:
         driver: rancher-nfs
+    dbbackup:
+        driver: rancher-nfs
 
 services:
     postgres:
@@ -10,6 +12,25 @@ services:
             - db:/var/lib/postgresql/data
         environment:
             POSTGRES_PASSWORD: postgres
+        labels:
+            io.rancher.container.pull_image: always
+            io.rancher.scheduler.affinity:host_label: role=compute
+
+    postgres_backup:
+        image: quay.io/tamu_cpt/postgres-backup:latest
+        environment:
+          MAX_BACKUPS: 5
+          PGHOST: db
+          PGPORT: 5432
+          PGUSER: postgres
+          PGPASSWORD: postgres
+        links:
+          - postgres:db
+        volumes:
+          - dbbackup:/backup
+        labels:
+          io.rancher.container.pull_image: always
+          io.rancher.scheduler.affinity:host_label: role=compute
 
     remoteuser:
         image: "quay.io/erasche/gx-cookie-proxy:latest"
