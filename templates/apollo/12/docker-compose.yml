@@ -52,12 +52,12 @@ services:
             CONTEXT_PATH: ${CONTEXT_PATH}
             APOLLO_PATH: ${CONTEXT_PATH}
             # Apollo DB Config
-            WEBAPOLLO_DB_HOST: db.apollo-testing.rancher.internal
+            WEBAPOLLO_DB_HOST: db
             WEBAPOLLO_DB_NAME: postgres
             WEBAPOLLO_DB_USERNAME: postgres
             WEBAPOLLO_DB_PASSWORD: postgres
             # Chado DB Config
-            CHADO_DB_HOST: chado.apollo-testing.rancher.internal
+            CHADO_DB_HOST: chado
             CHADO_DB_NAME: postgres
             CHADO_DB_USERNAME: postgres
             CHADO_DB_PASSWORD: postgres
