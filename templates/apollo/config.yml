@@ -1,7 +1,5 @@
 category: Services
 description: 'Genome annotation editor with a Java Server backend and a Javascript
-  client
-
-  that runs in a web browser as a JBrowse plugin.'
+  client that runs in a web browser as a JBrowse plugin.'
 name: CPT Apollo
-version: 2.0.5-rancher1.38
+version: 2.5.0-cpt

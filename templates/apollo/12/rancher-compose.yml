@@ -1,0 +1,25 @@
+.catalog:
+  name: CPT Apollo
+  version: 2.5.0-cpt
+  description: |
+    Genome annotation editor with a Java Server backend and a Javascript client
+    that runs in a web browser as a JBrowse plugin. Apollo image is default v2.5.0
+  questions:
+  - variable: "CONTEXT_PATH"
+    type: "string"
+    description: "Subdirectory/ctx path to access the file at. DO NOT INCLUDE LEADING OR TRAILING SLASH. Internal slashes are fine."
+    label: "Context Path"
+    default: "apollo"
+    required: true
+  - variable: "GALAXY_SECRET"
+    type: "string"
+    description: "Secret to access galaxy DB"
+    label: "Galaxy Secret"
+    default: "THE DEFAULT IS NOT SECURE!"
+    required: true
+  - variable: "GALAXY_DB_URI"
+    type: "string"
+    description: "Database URI"
+    label: "Galaxy Database URI"
+    default: "postgresql://postgres:postgres@db.postgres.rancher.internal:5432/postgres?client_encoding=utf8&sslmode=disable"
+    required: true
