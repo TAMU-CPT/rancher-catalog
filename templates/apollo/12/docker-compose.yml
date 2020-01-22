@@ -34,8 +34,6 @@ services:
             - apollo:backend
         labels:
           io.rancher.scheduler.affinity:host_label: role=webserver
-        #ports:
-          #- "80"
     # Data mounted on webserver. This is mostly specific to our deployment. We
     # need the apollo data directory available (i.e. the rancher-nfs volume
     # mounted) on the host(s) running the apollo tools so that they can copy
@@ -49,39 +47,38 @@ services:
           io.rancher.container.start_once: true
 
     apollo:
-        image: quay.io/gmod/apollo:2.5.0
-    environment:
-        CONTEXT_PATH: ${CONTEXT_PATH}
-        APOLLO_PATH: ${CONTEXT_PATH}
-        # Apollo DB Config
-        WEBAPOLLO_DB_HOST: db.apollo-testing.rancher.internal
-        WEBAPOLLO_DB_NAME: postgres
-        WEBAPOLLO_DB_USERNAME: postgres
-        WEBAPOLLO_DB_PASSWORD: postgres
-        # Chado DB Config
-        CHADO_DB_HOST: chado.apollo-testing.rancher.internal
-        CHADO_DB_NAME: postgres
-        CHADO_DB_USERNAME: postgres
-        CHADO_DB_PASSWORD: postgres
-        # NOTE: Apollo and Chado DB driver and dialect now set in apollo-config.groovy 
-        # to "org.postgresql.Driver" and "org.hibernate.dialect.PostgresPlusDialect" 
-        # if you need other options, please use a different image.
-        
-        # General Apollo Config
-        WEBAPOLLO_COMMON_DATA: /opt/apollo/data/galaxy
-        WEBAPOLLO_TRANSLATION_TABLE: '11'
-        WEBAPOLLO_USE_CHADO: 'true'
-        WEBAPOLLO_REMOTE_USER_AUTH: 'true'
-    volumes:
-        - apollo_data:/opt/apollo/data/
-    links:
-        - db:db
-        - chado:chado
-    ports:
-        - 8999:8080/tcp
-    labels:
-        io.rancher.container.pull_image: always
-        io.rancher.scheduler.affinity:host_label: role=compute
+        image: "quay.io/gmod/apollo:2.5.0"
+        environment:
+            CONTEXT_PATH: ${CONTEXT_PATH}
+            APOLLO_PATH: ${CONTEXT_PATH}
+            # Apollo DB Config
+            WEBAPOLLO_DB_HOST: db.apollo-testing.rancher.internal
+            WEBAPOLLO_DB_NAME: postgres
+            WEBAPOLLO_DB_USERNAME: postgres
+            WEBAPOLLO_DB_PASSWORD: postgres
+            # Chado DB Config
+            CHADO_DB_HOST: chado.apollo-testing.rancher.internal
+            CHADO_DB_NAME: postgres
+            CHADO_DB_USERNAME: postgres
+            CHADO_DB_PASSWORD: postgres
+            # Apollo and Chado DB driver and dialect now set in apollo-config.groovy 
+            # to "org.postgresql.Driver" and "org.hibernate.dialect.PostgresPlusDialect" 
+            # if you need other options, please use a different image.
+            # General Apollo Config
+            WEBAPOLLO_COMMON_DATA: /opt/apollo/data/galaxy
+            WEBAPOLLO_TRANSLATION_TABLE: '11'
+            WEBAPOLLO_USE_CHADO: 'true'
+            WEBAPOLLO_REMOTE_USER_AUTH: 'true'
+        volumes:
+            - apollo_data:/opt/apollo/data/
+        links:
+            - db:db
+            - chado:chado
+        ports:
+            - 8999:8080/tcp
+        labels:
+            io.rancher.container.pull_image: always
+            io.rancher.scheduler.affinity:host_label: role=compute
 
     db:
         image: erasche/chado:1.31-jenkins97-pg9.5
